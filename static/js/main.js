@@ -22,8 +22,15 @@ clipboard.on('success', function(e) {
 $('.icon-file-mdui').on('click', function(ev) {
     if(ev.target.tagName == "A" && (ev.target.text == "file_download" ||
         ev.target.text == "content_copy") || ev.target.title == "复制链接") return;
+    var isFolder = $(this).attr("data-folder");
     var dURL = $(this).attr("data-url");
-    window.location.href = dURL+"?v";
+    if(isFolder == "true" ){
+        window.location.href = dURL;
+    }else{
+        window.location.href = dURL+"?v";
+    }
+
+
 });
 $(document).ready(function() {
     $('#theme-toggle').on('click', function(){
@@ -37,6 +44,10 @@ $(document).ready(function() {
             $('#theme-toggle i').text('brightness_5');
             $.cookie("Theme", "mdui-dark");
         }
+    });
+    $('#go-to-top').on('click',function () {
+        $("html, body").animate({ scrollTop: 0 }, "slow");
+        return false;
     });
     $('.icon-file').on('click', function(ev) {
         if(ev.target.tagName == "A" && (ev.target.text == "file_download" ||
@@ -256,7 +267,7 @@ $(".search").bind('keydown', function(event) {
     key = key.replace(/(^\s*)|(\s*$)/g,"")
     if (event.key === "Enter") {
         if( $(this).val() != ""){
-            window.location.href = dIndex + "?search=" + key;
+            window.location.href = "/?search=" + key;
         }else{
             window.location.href = dIndex;
         }

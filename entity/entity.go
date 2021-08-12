@@ -29,6 +29,11 @@ type FileNode struct {
 	Hide         int    `json:"hide"`
 	CacheTime    int64  `json:"cache_time"`
 }
+type SearchNode struct {
+	FileNode
+	Dx        string
+	AccountId string
+}
 type Paths struct {
 	FileId    string `json:"fileId"`
 	FileName  string `json:"fileName"`
@@ -42,6 +47,8 @@ type Config struct {
 	HideFileId        string    `json:"hide_file_id"`
 	HerokuAppUrl      string    `json:"heroku_app_url"`
 	ApiToken          string    `json:"api_token"`
+	SiteName          string    `json:"site_name"`
+	AccountChoose     string    `json:"account_choose"`
 	Theme             string    `json:"theme" gorm:"default:'mdui'"`
 	AdminPassword     string    `json:"admin_password" gorm:"default:'PanIndex'"`
 	Damagou           Damagou   `json:"damagou" gorm:"-"`
